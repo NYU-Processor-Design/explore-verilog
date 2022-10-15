@@ -27,6 +27,7 @@ jobs:
           verilator_coverage -write-info coverage.txt src/**/*.dat
 
       - name: Upload Coverage
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           files: ./coverage.txt
+          fail_ci_if_error: true
