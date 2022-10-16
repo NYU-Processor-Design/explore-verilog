@@ -1,5 +1,6 @@
 nyu_install_target(
   TARGET compressors
+  PACKAGE explore-verilog
   FILES Comp22.sv Comp32.sv Comp42.sv Comp53.sv Comp73.sv
 )
 

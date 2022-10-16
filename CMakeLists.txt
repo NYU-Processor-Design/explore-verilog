@@ -19,7 +19,7 @@ add_subdirectory(src)
 
 configure_package_config_file(cmake/explore-verilog-config.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config.cmake
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/nyu
+  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/explore-verilog
 )
 write_basic_package_version_file(
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config-version.cmake
@@ -29,5 +29,5 @@ write_basic_package_version_file(
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config-version.cmake
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/nyu
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/explore-verilog
 )
