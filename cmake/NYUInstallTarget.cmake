@@ -1,0 +1,9 @@
+function(nyu_install_target)
+  cmake_parse_arguments(PARSE_ARGV 0 ARG "" TARGET FILES)
+  add_library(${ARG_TARGET} INTERFACE)
+  target_sources(${ARG_TARGET} INTERFACE FILE_SET HEADERS FILES ${ARG_FILES})
+  install(TARGETS ${ARG_TARGET} EXPORT ${ARG_TARGET} FILE_SET HEADERS
+      DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nyu)
+  install(EXPORT ${ARG_TARGET} NAMESPACE nyu::
+      DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/nyu)
+endfunction()
