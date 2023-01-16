@@ -1,11 +1,13 @@
 {
   "name": "explore-verilog",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "NYU Processor Design's Verilog Exploration Repo",
   "homepage": "https://github.com/NYU-Processor-Design/explore-verilog",
   "maintainers": [
     "Vito Gamberini <vito@gamberini.email>"
   ],
   "license": "CC0-1.0",
-  "dependencies": []
+  "dependencies": [
+    "nyu-cmake"
+  ]
 }

@@ -1,8 +1,9 @@
-function(nyu_setup_test)
-  set(single_args TEST_NAME TOP_MODULE)
-  set(multi_args SV_SOURCES CPP_SOURCES)
-
-  cmake_parse_arguments(PARSE_ARGV 0 ARG "" "${single_args}" "${multi_args}")
+function(setup_test)
+  cmake_parse_arguments(PARSE_ARGV 0 ARG
+    ""
+    "TEST_NAME;TOP_MODULE"
+    "SV_SOURCES;CPP_SOURCES"
+  )
 
   if(NOT DEFINED ARG_TEST_NAME)
     set(ARG_TEST_NAME ${ARG_TOP_MODULE})
@@ -15,13 +16,11 @@ function(nyu_setup_test)
   if(BUILD_TESTS)
     add_executable(${ARG_TEST_NAME} ${ARG_CPP_SOURCES})
     target_compile_features(${ARG_TEST_NAME} PRIVATE cxx_std_20)
-    verilate(${ARG_TEST_NAME}
-      SOURCES ${ARG_SV_SOURCES}
+    nyu_add_sv(${ARG_TEST_NAME} ${ARG_SV_SOURCES})
+    nyu_verilate(${ARG_TEST_NAME}
       COVERAGE
       PREFIX "V${ARG_TOP_MODULE}"
-      VERILATOR_ARGS -sv
       TOP_MODULE ${ARG_TOP_MODULE}
-      INCLUDE_DIRS ${VERILATOR_INCLUDE}
     )
     add_test(
       NAME ${ARG_TEST_NAME}

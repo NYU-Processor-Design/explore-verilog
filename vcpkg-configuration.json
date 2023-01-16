@@ -1,0 +1,18 @@
+{
+  "default-registry": {
+    "kind": "git",
+    "baseline": "1e9facc7992107ad639b4dcc87bd9a7ade1594e8",
+    "repository": "https://github.com/microsoft/vcpkg.git"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "baseline": "a5a3d653e792c1b51f3b75be336fe8b9f2512dd5",
+      "repository": "https://github.com/NYU-Processor-Design/nyu-registry.git",
+      "packages": [
+        "nyu-cmake",
+        "explore-verilog"
+      ]
+    }
+  ]
+}

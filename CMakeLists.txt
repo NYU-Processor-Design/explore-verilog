@@ -1,33 +1,42 @@
 cmake_minimum_required(VERSION 3.24)
-project(explore-verilog VERSION 1.0)
 
-option(BUILD_TESTS "Builds test binaries and adds them to CTest" TRUE)
+set(CMAKE_TOOLCHAIN_FILE
+  ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
+  CACHE STRING "Vcpkg toolchain file"
+)
 
-set(VERILATOR_INCLUDE ${CMAKE_SOURCE_DIR}/src)
+project(explore-verilog VERSION 1.1.0)
+
+find_package(nyu-cmake CONFIG REQUIRED)
+include(cmake/SetupTest.cmake)
+
+option(BUILD_TESTS "Builds test binaries and adds them to CTest" FALSE)
 
 if(BUILD_TESTS)
   include(CTest)
-  find_package(verilator CONFIG REQUIRED)
 endif(BUILD_TESTS)
 
-include(GNUInstallDirs)
-include(CMakePackageConfigHelpers)
-include(cmake/NYUInstallTarget.cmake)
-include(cmake/NYUSetupTest.cmake)
-
+add_library(compressors INTERFACE)
 add_subdirectory(src)
 
-configure_package_config_file(cmake/explore-verilog-config.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config.cmake
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/explore-verilog
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+nyu_install_sv(
+  EXPORT exploreVerilogTargets
+  TARGETS compressors
+  NAMESPACE nyu::
+  EXPORT_DEST ${CMAKE_INSTALL_DATADIR}/explore-verilog
+  SV_DEST ${CMAKE_INSTALL_DATADIR}/explore-verilog/rtl
 )
+
 write_basic_package_version_file(
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config-version.cmake
   COMPATIBILITY ExactVersion
   ARCH_INDEPENDENT
 )
 install(FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config.cmake
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/explore-verilog-config.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config-version.cmake
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/explore-verilog
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/explore-verilog
 )
