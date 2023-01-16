@@ -8,13 +8,6 @@ set(CMAKE_TOOLCHAIN_FILE
 project(explore-verilog VERSION 1.1.0)
 
 find_package(nyu-cmake CONFIG REQUIRED)
-include(cmake/SetupTest.cmake)
-
-option(BUILD_TESTS "Builds test binaries and adds them to CTest" FALSE)
-
-if(BUILD_TESTS)
-  include(CTest)
-endif(BUILD_TESTS)
 
 add_library(compressors INTERFACE)
 add_subdirectory(src)
