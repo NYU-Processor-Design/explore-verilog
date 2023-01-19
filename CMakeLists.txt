@@ -1,9 +1,19 @@
 cmake_minimum_required(VERSION 3.24)
 
-set(CMAKE_TOOLCHAIN_FILE
-  ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
-  CACHE STRING "Vcpkg toolchain file"
-)
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  include(FetchContent)
+  FetchContent_Declare(
+    vcpkg
+    GIT_REPOSITORY https://github.com/microsoft/vcpkg.git
+    GIT_TAG master
+    GIT_SHALLOW TRUE
+  )
+  FetchContent_MakeAvailable(vcpkg)
+  set(CMAKE_TOOLCHAIN_FILE
+    ${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake
+    CACHE FILEPATH "Vcpkg toolchain file"
+  )
+endif()
 
 project(explore-verilog VERSION 1.1.0)
 
