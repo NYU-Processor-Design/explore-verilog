@@ -20,7 +20,10 @@ project(explore-verilog VERSION 1.1.0)
 find_package(nyu-cmake CONFIG REQUIRED)
 
 add_library(compressors INTERFACE)
-add_subdirectory(src)
+
+add_subdirectory(rtl)
+add_subdirectory(dv)
+
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
@@ -38,6 +41,7 @@ write_basic_package_version_file(
   COMPATIBILITY ExactVersion
   ARCH_INDEPENDENT
 )
+
 install(FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/explore-verilog-config.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/explore-verilog-config-version.cmake
