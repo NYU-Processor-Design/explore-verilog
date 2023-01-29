@@ -1,7 +1,8 @@
-#include "CompressorTest.hpp"
-#include "VComp22.h"
+#include <catch2/catch_test_macros.hpp>
+#include <VComp22.h>
 
-int main(void) {
+#include "CompressorTest.hpp"
+
+TEST_CASE("Comp22") {
   nyu::comp_test<VComp22, 2>();
-  Verilated::threadContextp()->coveragep()->write("comp22.dat");
 }
