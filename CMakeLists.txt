@@ -27,7 +27,11 @@ find_package(nyu-cmake CONFIG REQUIRED)
 add_library(compressors INTERFACE)
 
 add_subdirectory(rtl)
-add_subdirectory(dv)
+
+if(NYU_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(dv)
+endif()
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)

@@ -14,8 +14,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          submodules: recursive
 
       - name: Configure
         run: cmake . -G Ninja -DNYU_BUILD_TESTS=ON

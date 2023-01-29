@@ -1,19 +1,15 @@
 #include <bit>
-#include <cassert>
 
 #include <catch2/catch_test_macros.hpp>
 #include <VComp42.h>
 
-#include "CompressorTest.hpp"
-
 TEST_CASE("Comp42") {
-  VComp42 model;
+  VComp42 dut;
 
-  for(model.cin = 0; model.cin < 2; ++model.cin) {
-    for(model.in = 0; model.in < (1 << 2); ++model.in) {
-      model.eval();
-      REQUIRE(
-          model.out + 2 * model.cout == std::popcount(model.in) + model.cin);
+  for(dut.cin = 0; dut.cin < 2; ++dut.cin) {
+    for(dut.in = 0; dut.in < (1 << 2); ++dut.in) {
+      dut.eval();
+      REQUIRE(dut.out + 2 * dut.cout == std::popcount(dut.in) + dut.cin);
     }
   }
 }

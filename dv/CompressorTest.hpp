@@ -10,12 +10,12 @@
 namespace nyu {
 
 template <typename Model, size_t width> void comp_test() {
-  Model model;
-  model.in = 0;
+  Model dut;
+  dut.in = 0;
   do {
-    model.eval();
-    REQUIRE(model.out == std::popcount(model.in));
-  } while(++model.in > 0 && model.in < (1 << width));
+    dut.eval();
+    REQUIRE(dut.out == std::popcount(dut.in));
+  } while(++dut.in > 0 && dut.in < (1 << width));
 }
 
 } // namespace nyu
