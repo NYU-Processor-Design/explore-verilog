@@ -2,19 +2,19 @@ module Comp73 (
     input  [6:0] in,
     output [2:0] out
 );
-  wire [1:0] fa0_out;
+  logic [1:0] fa0_out;
   Comp32 fa0 (
       .in (in[2:0]),
       .out(fa0_out)
   );
 
-  wire [1:0] fa1_out;
+  logic [1:0] fa1_out;
   Comp32 fa1 (
       .in (in[5:3]),
       .out(fa1_out)
   );
 
-  wire c;
+  logic c;
   Comp32 fa2 (
       .in ({fa0_out[0], fa1_out[0], in[6]}),
       .out({c, out[0]})

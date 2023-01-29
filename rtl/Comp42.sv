@@ -4,7 +4,7 @@ module Comp42 (
     output [1:0] out,
     output cout
 );
-  wire s;
+  logic s;
   Comp32 fa0 (
       .in (in[2:0]),
       .out({cout, s})
